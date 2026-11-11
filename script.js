@@ -48,7 +48,7 @@ if ('IntersectionObserver' in window) {
 (function () {
   // Initialize EmailJS
   emailjs.init({
-    publicKey: "YOUR_PUBLIC_KEY"
+    publicKey: "lakshitakolhe977@gmail.com"
   });
 })();
 
@@ -64,7 +64,6 @@ contactForm.addEventListener("submit", async function (event) {
   const templateParams = {
     from_name: document.getElementById("name").value.trim(),
     from_email: document.getElementById("email").value.trim(),
-    subject: document.getElementById("subject").value.trim(),
     message: document.getElementById("message").value.trim(),
     reply_to: document.getElementById("email").value.trim()
   };
