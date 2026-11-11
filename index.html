@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdeivr.net/npm/@emailjs/browser@4/dist/email.min..js"></script>
+  <script src="script.js"></script>
   <style>
     .contact-form {
       flex: 1 1 100%;
@@ -257,15 +259,8 @@
   <footer>
     <p>© <span id="year"></span> Lakshita Kolhe. Built with care.</p><a href="#home">Back to top ↑</a>
   </footer>
-  <script src="script.js"></script>
-  <script>
-    document.getElementById('contactForm').addEventListener('submit', event => {
-      event.preventDefault();
-      const name = document.getElementById('contactName').value.trim();
-      document.getElementById('contactFormStatus').textContent =
-        `Thanks, ${name}. This form is not connected to email, so your message was not sent.`;
-    });
-  </script>
+  
+  
 </body>
 
 </html>
