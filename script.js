@@ -45,3 +45,70 @@ if ('IntersectionObserver' in window) {
     observer.observe(item);
   });
 }
+(function () {
+  // Initialize EmailJS
+  emailjs.init({
+    publicKey: "YOUR_PUBLIC_KEY"
+  });
+})();
+
+const contactForm = document.getElementById("contactForm");
+const submitBtn = document.getElementById("submitBtn");
+const statusMessage = document.getElementById("statusMessage");
+
+contactForm.addEventListener("submit", async function (event) {
+
+  event.preventDefault();
+
+  // Collect form data
+  const templateParams = {
+    from_name: document.getElementById("name").value.trim(),
+    from_email: document.getElementById("email").value.trim(),
+    subject: document.getElementById("subject").value.trim(),
+    message: document.getElementById("message").value.trim(),
+    reply_to: document.getElementById("email").value.trim()
+  };
+
+  // Prevent empty submissions
+  if (Object.values(templateParams).some(value => !value)) {
+    statusMessage.textContent = "Please fill in all fields.";
+    statusMessage.style.color = "red";
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Sending...";
+  statusMessage.textContent = "";
+
+  try {
+
+    await emailjs.send(
+      "YOUR_SERVICE_ID",
+      "YOUR_TEMPLATE_ID",
+      templateParams
+    );
+
+    statusMessage.textContent =
+      "Thank you! Your message has been sent successfully.";
+
+    statusMessage.style.color = "green";
+
+    contactForm.reset();
+
+  } catch (error) {
+
+    console.error("Email sending error:", error);
+
+    statusMessage.textContent =
+      "Sorry! Message could not be sent. Please try again.";
+
+    statusMessage.style.color = "red";
+
+  } finally {
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Send Message";
+
+  }
+
+});
